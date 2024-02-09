@@ -115,6 +115,19 @@ class LegolasRunner:
     """
 
     def __init__(self, parfiles, remove_parfiles, nb_cpus, executable=None):
+        """Initializes the runner with the given parameters.
+        Parameters:
+            - parfiles (list): List of pathlib.Path objects representing the parameter files.
+            - remove_parfiles (bool): Flag indicating whether or not to remove the parameter files after execution.
+            - nb_cpus (int): Number of CPUs to use for execution.
+            - executable (str): Path to the executable to use for execution, if different from the default.
+        Returns:
+            - None: This function does not return anything.
+        Processing Logic:
+            - Validates the given parameters.
+            - Sets the parfile_dir attribute based on the first parfile in the list.
+            - Logs the initialization using the given executable."""
+        
         self.parfiles = _validate_parfiles(parfiles)
         self.parfile_dir = self.parfiles[0].parent
         self.executable = _validate_executable(executable)
