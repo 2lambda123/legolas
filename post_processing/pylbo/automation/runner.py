@@ -8,6 +8,7 @@ import psutil
 import tqdm
 from pylbo.utilities.logger import pylboLogger
 from pylbo.utilities.toolbox import transform_to_list
+from security import safe_command
 
 
 def _validate_executable(executable):
@@ -145,7 +146,7 @@ class LegolasRunner:
             A call to a subprocess to run legolas.
         """
         cmd = [f"./{self.executable.stem}", "-i", str(parfile)]
-        return subprocess.call(cmd)
+        return safe_command.run(subprocess.call, cmd)
 
     @staticmethod
     def _terminate_workers():
